@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="kor">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>보통의 순환</h1>
+    <script>
+        for (var i = 0; i<10 ; i++) {
+            document.write('coding everybody' + i + '<br>');
+        }
+    </script>
+
+    <h2>continue의 적용</h2>
+    <script>
+            for (var i = 0; i < 10; i++) {
+                if (i === 5) {
+                    continue;                        // 변수 i 값이 5일 때, 위의 for문 조건식으로 다시 들어감
+                }
+                document.write('coding everybody' + i + '<br>');  // 변수가 5일때만 다 빼고 출력
+            }
+        </script>
+  
+    <h3>break의 적용</h3>
+    <script>
+        for (var i = 0; i < 10; i++) {
+            if (i === 5) {
+                break;                        // 변수 i 값이 5일 때, for문이 중지됨
+            }
+            document.write('coding everybody' + i + '<br>');  // 그래서 변수가 4까지만 출력
+        }
+    </script>
+    
+    </body>
+</html>
