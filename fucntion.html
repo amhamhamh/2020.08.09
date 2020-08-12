@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="kor">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>함수안의 while문</h1>
+    <script>
+
+        function numbering() {
+            i = 0;
+            while (i < 10) {
+                document.write(i);
+                i += 1;
+            }
+        }
+        numbering();
+    </script>
+    
+    <h2>return 값의 출력</h2>
+    <script>
+        function get_number1() {
+            return ('egoing' + '<br>');
+        }
+
+        function get_number2() {
+            return 'leechzhe';
+        }
+
+        document.write(get_number1());     // 두 개다 실행
+        document.write(get_number2());     // 두 개다 실행
+    </script>
+    
+    <h3><a style='color :purple';>return 값이 출력 안됨</a></h3>
+    <script>
+        function get_number1() {
+            return ('egoing' + '<br>');
+            return ('leechzhe' + '<br>');
+            return ('taeho' + '<br>');
+        }
+        document.write(get_number1());    // return 값은 딱 1번만 출력 되기 때문에. egoing만 출력
+        
+    </script>
+
+</body>
+
+</html>
