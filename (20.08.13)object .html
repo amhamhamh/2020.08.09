@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="kor">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <h1>object 생성하는 법1</h1>
+  <script>
+    var grades = {};           // 빈 객체를 만듬
+    grades['egoing'] = 10;     // egoing이라는 인덱스(순서)에 10을 값을 넣음
+    grades['k8805'] = 6;       // k8805이라는 인덱스(순서)에 6을 값을 넣음 
+    grades['sorialgi'] = 80;   // sorialgi이라는 인덱스(순서)에 80을 값을 넣음  
+  </script>
+
+  <h2>object 생성하는 법2</h2>
+  <script>
+    var grades = new Object();    // 빈 객체를 생성한 다음.
+    grades['egoing'] = 10;     // egoing이라는 인덱스(순서)에 10을 값을 넣음
+    grades['k8805'] = 6;       // k8805이라는 인덱스(순서)에 6을 값을 넣음 
+    grades['sorialgi'] = 80;   // sorialgi이라는 인덱스(순서)에 80을 값을 넣음   
+  </script>
+
+  <h3>object 생성하는 법2</h3>
+  <script>
+    var grades = { 'egoing': 10, 'k8805': 6, 'sorialgi': 80 };
+    alert(grades['sorialgi']);
+    //'sorialgi'의 키 값은 80이다.
+  </script>
+
+  <h4>object의 반복문 </h4>
+  <script>
+    var grades = { 'egoing': 10, 'k8805': 6, 'sorialgi': 80 };
+    //grades 라는 객체 안에 선언
+    for (var name in grades) {
+      //grades 라는 객체를 name이라고 다시 선언
+      document.write('key:' + name + 'value :' + grades[name] + '<br>');
+      //'key:'(문자)+name+(name의 키 값)'value :'(문자)+grades[name](grades 객체의 배열 값. 순서대로 10,6,80)+'<br>'
+    }
+  </script>
+
+  <h5><a style = 'color :royalblue' font-wight = 'bold' > 지향 프로그램</a></h5>
+  <script>
+    var grades = {
+    // grades라는 객체 안에는 객체도 함수도 담을 수 있다.                         
+      'list': { 'egoing': 10, 'k8805': 6, 'sorialgi': 80 },
+      'show': function () {                                         // show는 키값에 함수를 for문으로 만듬                   
+        for (var name in this.list) {                               // 괄호 안에 this(여기를 가르키는 약속된 용어)는 grades를 의미. list는 안에 있는 객체를 의미. this.list를 name으로 선언
+          document.write(name + ':' + this.list[name] + "<br />");  // name(name이라는 변수 선언) + ':' + this.list[name](grades안의 객체 list의 값을 불러냄) + "<br />"
+        }
+      }
+    };
+    grades.show(); //grades객체의 show객체(function)로 접근하여 실행
+  </script>
+</body>
+
+</html>
