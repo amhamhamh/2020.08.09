@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="kor">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>arguments</title>
+</head>
+
+<body>
+    <h1>arguments 1</h1>
+    <script>
+        function sum() {
+            var i, _sum = 0;                                                // 변수 i 값은 0. _sum은 0은 고정
+            for (i = 0; i < arguments.length; i++) {                       // for문은 인자의 길이값만큼 실행.       
+                document.write(i + ' : ' + arguments[i] + '<br />');       // i : arguments의 배열 인덱스 값 
+                _sum += arguments[i];                                      // arguments들의 i 값들을 더한 값이 _sum값. 
+            }
+            return _sum;                                                  // 함수 sum은 _sum을 리턴하는 값.(위의 값 형태로)
+        }
+        document.write('result : ' + sum(1, 2, 3, 4));                   //  result 값은 sum의 인자 (1,2,3,4)를 전부 더한 값.
+    </script>
+    <h2>aruguments 2</h2>
+    <script>
+        function zero() {                                               
+            console.log(
+                'zero.length', zero.length,                             // zero.length문자 값. zero.length는 zero 함수의 매개변수 길이
+                'arguments', arguments.length                           // arguments는  arguments의 길이값 
+            );
+        }
+        zero(); // zero.length 0 arguments 0 
+        function one(arg1) {
+            console.log(
+                'one.length', one.length,                             // one.length는. one 함수의 매개변수 길이(arg1)          
+                'arguments', arguments.length                         // arguments.length는. one 함수의 매개변수에 적용될 인자(arguments)의 길이 
+                );
+        }
+        one('val1', 'val2');  // one.length 1 arguments 2 
+        function two(arg1, arg2) {                                  // two라는 함수는 매개변수가 2개
+            console.log(
+                'two.length', two.length,
+                'arguments', arguments.length
+            );
+        }     
+        two('val1');  // two.length 2 arguments 1                  // two라는 함수 매개변수에 적용될 arguments는 1개.  
+    </script>
+
+</body>
+
+</html>
