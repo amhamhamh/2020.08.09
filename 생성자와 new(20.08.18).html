@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="kor">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!--일반-->
+    <script>
+        var person = {                          // person이라는 객체
+            'name': 'egoing',                   // name이라는 프라퍼티. 
+            'introduce': function () {          // 함수를 담은 것은 메소드
+                return 'My name is ' + this.name;
+            }
+        }
+        document.write(person.introduce());
+    </script>
+    <!--생성자-->
+    <script>
+        function Person() { }
+        var p1 = new Person();                         //함수를 호출할 때, new를 붙이면 새로운 객체를 만들게 된다.(이것이 생성자)     
+        p1.name = 'egoing';
+        p1.introduce = function () {
+            return 'My name is ' + this.name;
+        }
+        document.write(p1.introduce() + "<br />");
+
+        var p2 = new Person();
+        p2.name = 'leezche';
+        p2.introduce = function () {
+            return 'My name is ' + this.name;
+        }
+        document.write(p2.introduce());
+    </script>
+    <!--생성자 내에서 this로 하여금 객체 프라퍼티를 정의함-->
+    <script>
+        function Person(name) {                             
+            this.name = name;
+            this.introduce = function () {
+                return 'My name is ' + this.name;
+            }
+        }
+        var p1 = new Person('egoing');                          // 생성자를 생성하면서 객체 내의 프라퍼티를 정의함.
+        document.write(p1.introduce() + "<br />");
+
+        var p2 = new Person('leezche');                         // 생성자를 생성하면서 객체 내의 프라퍼티를 정의함.
+        document.write(p2.introduce());
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="kor">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!--this와 메소드-->
+    <script>
+        var o = {                                     // 변수 O의 전역객체는 window. (아무 것도 정의하지 않을 때는 무조건 window가 전역객체)      
+            func: function () {                      // 변수 O의 객체에 포함된 메소드 func
+                if (o === this) {                   // 여기서의 this가 속해 있는 함수의 객체를 가르킴(즉, 변수 O)
+                    document.write("o === this"+'<br>');
+                }
+            }
+        }
+        o.func();           // 결과는 o === this
+    </script>
+    <!--변수와 this-->
+    <script>
+        var funcThis = null;                // funcThis는 null이라고 정의
+
+        function Func() {                   // Func 함수 실행시에 funcThis =  null(아무것도 아니라는 뜻) = window = this
+            funcThis = this;
+        }
+        var o1 = Func();                    // O1 변수는 func(); 함수 실행이라고 정의 
+        if (funcThis === window) {              // functhis는  위쪽의 window라고 정의 되었음, 
+            document.write('window <br />');    //그래서 이 명령이 실행됨
+        }
+
+        var o2 = new Func();                    // O2 변수는 
+        if (funcThis === o2) {
+            document.write('o2 <br />');
+        }
+    </script>
+    <!--apply와 call을 활용하여 this 값 제어-->
+    <script>
+        var o = {}                                 // O라는 빈 객체 
+        var p = {}                                 // P라는 빈 객체 
+        function func() {
+            switch (this) {                        // switch문은 break가 나오기 전까지 case가 일치한다면 실행한다.
+                case o:                            // 만약 case 들이 전부다 일치하지 않으면, default 값을 실행한다. 
+                    document.write('o<br />');     
+                    break;
+                case p:
+                    document.write('p<br />');
+                    break;
+                case window:
+                    document.write('window<br />');
+                    break;
+            }
+        }
+        func();             // 값은 window
+        func.apply(o);      // 값은 O
+        func.apply(p);      // 값은 P
+    </script>
+
+</body>
+
+</html>
