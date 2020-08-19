@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!--표준 내장 객체-->
+    <h1>자바스크립트는 내장 객체는 한정</h1>
+    <ul>
+        <li>object</li>
+        <li>array</li>
+        <li>function</li>
+        <li>string</li>
+        <li>boolean</li>
+        <li>math</li>
+        <li>date</li>
+        <li>Regexp</li>
+    </ul>
+    <script>
+        var arr = new Array('seoul', 'new york', 'ladarkh', 'pusan', 'Tsukuba');  // var라는 변수에 new Array라고 배열을 넣음
+        function getRandomValueFromArray(arr) {                                   // getRandomValueFromArraysms  함수의 매개변수는 arr
+            var index = Math.floor(arr.length * Math.random());
+            // 변수 index는 Math.floor← 반내림 (arr.length ← arr의 길이만큼 0~4 * Math.random() ← 0~1의 숫자를 랜덤으로 뽑음 )로 정의함.    
+            // 값은 ()괄호 안은 Math.random = 1.1   arr.length   = 2 . 값은  Math.floor는 2.2→ 2 로 내려짐
+            return arr[index]; // arr[0 or 1 or 3...] 등의 값을 return 함. 
+        }
+        console.log(getRandomValueFromArray(arr));
+    </script>
+    <!--표준 내장 객체의 간단화-->
+    <script>
+        Array.prototype.random = function () {                                         // Array.prototype.random(프라퍼티)를 = function()으로 할당
+            var index = Math.floor(this.length * Math.random());                       // this는 Array이라는 안의 객체에 속해있음(39줄 참고). 
+            return this[index];                                                        // Array 객체의 배열 값을 불러옴.
+        }
+        var arr = new Array('seoul', 'new york', 'ladarkh', 'pusan', 'Tsukuba');     // 변수 arr는 new Array이라는 생성자를 만듬 39줄→ 35줄
+        console.log(Array.random());
+    </script>
+    </script>
+</body>
+
+</html>
