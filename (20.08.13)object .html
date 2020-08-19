@@ -24,37 +24,66 @@
     grades['sorialgi'] = 80;   // sorialgi이라는 인덱스(순서)에 80을 값을 넣음   
   </script>
 
-  <h3>object 생성하는 법2</h3>
-  <script>
-    var grades = { 'egoing': 10, 'k8805': 6, 'sorialgi': 80 };
-    document.write(grades['sorialgi']);
-    //'sorialgi'의 키 값은 80이다.
-  </script>
+<!DOCTYPE html>
+<html lang="kor">
 
-  <h4>object의 반복문 </h4>
-  <script>
-    var grades = { 'egoing': 10, 'k8805': 6, 'sorialgi': 80 };
-    //grades 라는 객체 안에 선언
-    for (var name in grades) {
-      //grades 라는 객체를 name이라고 다시 선언
-      document.write('key:' + name + 'value :' + grades[name] + '<br>');
-      //'key:'(문자)+name+(name의 키 값)'value :'(문자)+grades[name](grades 객체의 배열 값. 순서대로 10,6,80)+'<br>'
-    }
-  </script>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
 
-  <h5><a style = 'color :royalblue' font-wight = 'bold' text-decoration = 'underline'> 지향 프로그램</a></h5>
-  <script>
-    var grades = {
-    // grades라는 객체 안에는 객체도 함수도 담을 수 있다.                         
-      'list': { 'egoing': 10, 'k8805': 6, 'sorialgi': 80 },
-      'show': function () {                                         // show는 키값에 함수를 for문으로 만듬                   
-        for (var name in this.list) {                               // 괄호 안에 this(여기를 가르키는 약속된 용어)는 grades를 의미. list는 안에 있는 객체를 의미. this.list를 name으로 선언
-          document.write(name + ':' + this.list[name] + "<br />");  // name(name이라는 변수 선언) + ':' + this.list[name](grades안의 객체 list의 값을 불러냄) + "<br />"
+<body>
+    <!--object의 확장-->
+    <script>
+        Object.prototype.contain = function (neddle) {          // contain 메소드는 function 안의 needle 매개변수와 같는지 확인
+            for (var name in this) {                            // this(여기 객체 안에서) 변수 값을 for문으로 하나씩 실행
+                if (this[name] === neddle) {                    // 인자를 대입한 매개변수(neddle)값이 this[name] 객체의 키 값이 일치하다면
+                    return true;                                // 값은 true    
+                }
+            }
+            return false;
         }
-      }
-    };
-    grades.show(); //grades객체의 show객체(function)로 접근하여 실행
-  </script>
+        var o = { 'name': 'egoing', 'city': 'seoul' }
+        console.log(o.contain('egoing'));
+        var a = ['egoing', 'leezche', 'grapittie'];
+        console.log(a.contain('leezche'));
+    </script>
+    <!--object의 함정-->
+    <script>
+        Object.prototype.contain = function (neddle) {          // contain 메소드는 function 안의 needle 매개변수와 같는지 확인
+            for (var name in this) {                            // this(여기 객체 안에서) 변수 값을 for문으로 하나씩 실행
+                if (this[name] === neddle) {                    // 인자를 대입한 매개변수(neddle)값이 this[name] 객체의 키 값이 일치하다면
+                    return true;                                // 값은 true    
+                }
+            }
+            return false;
+        }
+        var o = { 'name': 'egoing', 'city': 'seoul' }
+        var a = ['egoing', 'leezche', 'grapittie'];
+        for (var name in o) {                                     // 변수 O 안의 모든 객체를 실행 시켜버림(부모객체까지 포함. contain)까지 나옴.    
+            console.log(name);                                  // o값의 name 인자를 38줄로 대입하면
+        }
+    </script>
+    <!--objec 확장의 수정(범위를 줄여줌으로써, 오류 값을 줄여냄)-->
+    <script>
+        Object.prototype.contain = function (neddle) {          // contain은 부모까지 상속 받음. 
+            for (var name in this) {
+                if (this[name] === neddle) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        var o = { 'name': 'egoing', 'city': 'seoul' }
+        var a = ['egoing', 'leezche', 'grapittie'];
+        for (var name in o) {
+            if (o.hasOwnProperty(name)) {                       // hasownproperty(name-매개변수)
+                // 해당 객체내에 선언된 프라퍼티가 가지고 있는지 true or false 값으로 출력
+                console.log(name);                          // 아래의 값이 실행
+            }
+        }
+    </script>
 </body>
 
 </html>
