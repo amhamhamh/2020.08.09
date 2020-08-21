@@ -13,33 +13,33 @@
             var pattern = new RegExp('a');
             document.write(pattern);
         </script>
-        <li>1. exec메소드. 괄호 안의 문자열 찾기</li>
+        <!--1. exec메소드. 괄호 안의 문자열 찾기-->
         <script>
             console.log(pattern.exec('abcdef')); // ['a']
             console.log(pattern.exec('bcdefg')); // null
         </script>
-        <li>test메소드. 괄호안의 문자가 존재하는 여부 확인</li>
+        <!--test메소드. 괄호안의 문자가 존재하는 여부 확인-->
         <script>
             console.log(pattern.test('abcdef')); // true
             console.log(pattern.test('bcdefg')); // false
         </script>
-        <li>match메소드는 exec메소와 같이 추출 메소드</li>
+        <!--match메소드는 exec메소와 같이 추출 메소드-->
         <script>
             console.log('abcdef'.match(pattern)); // ["a"]
             console.log('bcdefg'.match(pattern)); // null
         </script>
-        <li>문자열에서 패턴 검색 후. 변경된 값으로 리턴</li>
+        <!--문자열에서 패턴 검색 후. 변경된 값으로 리턴-->
         <script>
             console.log('abcdef'.replace(pattern, 'A'));  // Abcdef
         </script>
-        <li>i를 넣으면 대문자와 소문자 상관없이 실행</li>
+        <!--i를 넣으면 대문자와 소문자 상관없이 실행-->
         <script>
             var xi = /a/;
             console.log("Abcde".match(xi)); // null 
             var oi = /a/i;
             console.log("Abcde".match(oi)); // ["A"];
         </script>
-        <li>g를 넣으면 검색된 모든 결과가 리턴된다.</li>
+        <!--g를 넣으면 검색된 모든 결과가 리턴된다.-->
         <script>
             var xg = /a/;
             console.log("abcdea".match(xg));
