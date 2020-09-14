@@ -1,6 +1,5 @@
-<!doctype html>
+<!doctype html><!--이 코드는 O.auth 자체를 불러내지 못하기 떄문에 작동이 안됨-->
 <html>
-
 <head>
     <title>WEB1 - Welcome</title>
     <meta charset="utf-8">
@@ -9,27 +8,30 @@
     <script>
         function checkLoginStatus() {
             var loginBtn = document.querySelector('#loginBtn');
-            if (gauth.isSignedIn.get()) {
+            var nameTxt = document.querySelector('#name');
+            if (gauth.isSignedIn.get()) {       //구글 login한 상태
                 console.log('logined');
-                loginBtn.value = 'Logout';
+                loginBtn.value = 'Logout';      // value 값을 로그아웃한 상태로 만듬. 
+                var profile = gauth.currentUser.get().getBasicProfile();
+                nameTxt.innerHTML = 'Welcome <strong>' + profile.getName() + '</strong> ';
             } else {
-                console.log('logouted');
-                loginBtn.value = 'Login';
+                console.log('logouted');        //구글 logout한 상태
+                loginBtn.value = 'Login';      // value 값을 로그인 상태로 만듬.      
             }
         }
-        function init() {
+        function init() {                                       // 여기는 oauth2를 핸들링하는 함수.
             console.log('init');
             gapi.load('auth2', function () {
                 console.log('auth2');
 
-                window.gauth = gapi.auth2.init({
+                window.gauth = gapi.auth2.init({             //  구글의 oauth2를 이용하여 해당 클라이언트로 들어오게 초기화 함
                     client_id: '1069961247398-d5cpi17r74jaad01cf93gbilfnaf3mf4.apps.googleusercontent.com'
                 })
-                gauth.then(function () {
+                gauth.then(function () {                    // gauth.oauth에 승인을 받고,  checkLoginStatus 함수를 실행
                     console.log('googleAuth success');
                     checkLoginStatus();
                 }, function () {
-                    console.log('googleAuth fail');
+                    console.log('googleAuth fail');         // 해당 함수가 실행이 되지 않았을 떄 로그 값에 googleAuth fail
                 });
             });
         }
@@ -37,15 +39,15 @@
 </head>
 
 <body>
-    <input type="button" id="loginBtn" value="checking..." onclick="
-    if(this.value === 'Login'){
-      gauth.signIn().then(function(){
-        console.log('gauth.signIn()');
-        checkLoginStatus();
+    <span id="name"></span><input type="button" id="loginBtn" value="checking..." onclick="
+    if(this.value === 'Login'){                         
+      gauth.signIn().then(function(){                  //logout된 상태 로그인 함수를 실행하고, 그 다음으로 
+        console.log('gauth.signIn()');                 // checkLoginStatus를 함수를 실행함으로써 value값은 logout으로 바뀜.
+        checkLoginStatus();                            //innerHTML실행되면서 해당 프로필의 네임을 짙게 표시
       });
     } else {
-      gauth.signOut().then(function(){
-        console.log('gauth.signOut()');
+      gauth.signOut().then(function(){              //login상태. 로그아웃 함수를 실행.
+        console.log('gauth.signOut()');             // checkLoginStatus를 함수를 실행함으로써 value값은 login으로 바뀜
         checkLoginStatus();
       });
     }
@@ -67,6 +69,7 @@
         outside of CERN in 1991, first to other research institutions starting in January 1991 and to the general public
         on the Internet in August 1991.
     </p>
-    <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script>
+    <script src="https://apis.google.com/js/platform.js?onload=init" async defer></script> <!--google api의 sdk-->
 </body>
+
 </html>
